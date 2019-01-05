@@ -91,6 +91,7 @@ def add_map_join_simple(results, sent_pre_tags, sent_true_tags):
     if  len(sent_true_tags) != len(sent_pre_tags):
         print("error compared items: %s \n %s" % (" ".join(sent_true_tags), " ".join(sent_pre_tags)))
 
+
     for idx in range(len(sent_pre_tags)):
         sent_pre_tags[idx] = sent_pre_tags[idx].replace("S_", "B_").replace("E_", "I_")
         sent_true_tags[idx] = sent_true_tags[idx].replace("S_", "B_").replace("E_", "I_")
@@ -208,9 +209,9 @@ if __name__ == '__main__':
           help='Whether to lower case the input text.'
     )
     parser.add_argument(
-          '--vocab_file',
+          '--vocab_loc',
           type=str,
-          default= "checkpoint/vocab.txt",
+          default= "checkpoint/",
           help='The vocabulary file that the BERT model was trained on.'
     )
     FLAGS, _ = parser.parse_known_args()
@@ -218,10 +219,10 @@ if __name__ == '__main__':
     data_dir = FLAGS.data_dir
     max_seq_length = FLAGS.max_seq_length
     do_lower_case = FLAGS.do_lower_case
-    vocab_file = FLAGS.vocab_file
+    vocab_file = os.path.join(FLAGS.vocab_loc, 'vocab.txt')
     data_type = FLAGS.data_type
     tokenizer = tokenization.FullTokenizer(
-        vocab_file=FLAGS.vocab_file, do_lower_case=FLAGS.do_lower_case)
+        vocab_file=vocab_file, do_lower_case=FLAGS.do_lower_case)
 
     with codecs.open(os.path.join(output_dir, 'label2id.pkl'), 'rb') as rf:
                 label2id = pickle.load(rf)
@@ -229,7 +230,7 @@ if __name__ == '__main__':
     results = init_map_join_srl(labels)
     pre_labes_total = []
     pre_labels = []
-    with codecs.open(os.path.join(output_dir + "/result_dir", 'label_test.txt'),encoding='utf-8') as f:
+    with codecs.open(os.path.join(output_dir , 'label_test.txt'),encoding='utf-8') as f:
         for line in f:
             if line.strip() != "[SEP]":
                 pre_labels.append(line.strip())
