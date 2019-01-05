@@ -22,13 +22,14 @@ part two: experiments
   The default tagging is BIO, you can also use BIESO tagging strategy, if so, you need to change the method get_labels() of SrlProcessor in bert_lstm_crf_srl.py.
   Using the default setting : bert + crf.
   
-      export TRAINED_CLASSIFIER="/your/model/dir"
-      export BERT_MODEL_DIR="/bert/pretrained/model/dir"
+      export TRAINED_CLASSIFIER=/your/model/dir
+      export BERT_MODEL_DIR=/bert/pretrained/model/dir
+      export DATA_DIR=/data/dir/
       python bert_lstm_crf_srl.py  --task_name="srl" \
              --do_train=True  \
               --do_eval=True  \
               --do_predict=True  \
-             --data_dir=SRLdata  \
+             --data_dir=$DATA_DIR  \
              --vocab_file=$BERT_MODEL_DIR/vocab.txt \
              --bert_config_file==$BERT_MODEL_DIR/bert_config.json \
              --init_checkpoint==$BERT_MODEL_DIR/bert_model.ckpt \
@@ -40,22 +41,23 @@ part two: experiments
              
   If you want to add lstm layer:
   
-        export TRAINED_CLASSIFIER="/your/model/dir"
-        export BERT_MODEL_DIR="/bert/pretrained/model/dir"
-        python bert_lstm_crf_srl.py  --task_name="srl" \
-               --do_train=True  \
-                --do_eval=True  \
-                --do_predict=True  \
-               --data_dir=SRLdata  \
-               --vocab_file=$BERT_MODEL_DIR/vocab.txt \
-               --bert_config_file==$BERT_MODEL_DIR/bert_config.json \
-               --init_checkpoint==$BERT_MODEL_DIR/bert_model.ckpt \
-               --max_seq_length=128 \
-               --train_batch_size=32   \
-               --learning_rate=3e-5   \
-               --num_train_epochs=3.0  \
-               --add_lstm=True  \
-               --output_dir=$TRAINED_CLASSIFIER/ 
+         export TRAINED_CLASSIFIER=/your/model/dir
+         export BERT_MODEL_DIR=/bert/pretrained/model/dir
+         export DATA_DIR=/data/dir/
+         python bert_lstm_crf_srl.py  --task_name="srl" \
+                --do_train=True  \
+                 --do_eval=True  \
+                 --do_predict=True  \
+                --data_dir=$DATA_DIR  \
+                --vocab_file=$BERT_MODEL_DIR/vocab.txt \
+                --bert_config_file==$BERT_MODEL_DIR/bert_config.json \
+                --init_checkpoint==$BERT_MODEL_DIR/bert_model.ckpt \
+                --max_seq_length=128 \
+                --train_batch_size=32   \
+                --learning_rate=3e-5   \
+                --num_train_epochs=3.0  \
+                 --add_lstm=True  \
+                  --output_dir=$TRAINED_CLASSIFIER/ 
    To get the right f1 score, you need to run another file:
    
            python evaluate_unit.py --output_dir /the/predicted/dir --data_dir /the/test/file/dir --vocab_file /vocab/dir
