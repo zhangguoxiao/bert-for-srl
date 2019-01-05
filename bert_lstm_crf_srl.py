@@ -202,11 +202,11 @@ def write_tokens(tokens,mode):
                 wf.write(token+'\n')
         wf.close()
 
-def convert_single_example(ex_index, example, label_list, max_seq_length, tokenizer,mode, output_file):
+def convert_single_example(ex_index, example, label_list, max_seq_length, tokenizer,mode):
     label_map = {}
     for (i, label) in enumerate(label_list,1):
         label_map[label] = i
-    with open(os.path.join(output_file,'label2id.pkl'),'wb') as w:
+    with open(os.path.join(FLAGS.output_dir,'label2id.pkl'),'wb') as w:
         pickle.dump(label_map,w)
     textlist = example.text.split(' ')
     labellist = example.label.split(' ')
@@ -287,7 +287,7 @@ def filed_based_convert_examples_to_features(
     for (ex_index, example) in enumerate(examples):
         if ex_index % 5000 == 0:
             tf.logging.info("Writing example %d of %d" % (ex_index, len(examples)))
-        feature = convert_single_example(ex_index, example, label_list, max_seq_length, tokenizer,mode, output_file)
+        feature = convert_single_example(ex_index, example, label_list, max_seq_length, tokenizer,mode)
 
         def create_int_feature(values):
             f = tf.train.Feature(int64_list=tf.train.Int64List(value=list(values)))
@@ -565,7 +565,7 @@ def main(_):
                 writer.write("%s = %s\n" % (key, str(result[key])))
     if FLAGS.do_predict:
         token_path = os.path.join(FLAGS.output_dir, "token_test.txt")
-        with open('./output/label2id.pkl','rb') as rf:
+        with open(os.path.join(FLAGS.output_dir,'label2id.pkl'),'rb') as rf:
             label2id = pickle.load(rf)
             id2label = {value:key for key,value in label2id.items()}
         if os.path.exists(token_path):
