@@ -31,8 +31,8 @@ part two: experiments
               --do_predict=True  \
              --data_dir=$DATA_DIR  \
              --vocab_file=$BERT_MODEL_DIR/vocab.txt \
-             --bert_config_file==$BERT_MODEL_DIR/bert_config.json \
-             --init_checkpoint==$BERT_MODEL_DIR/bert_model.ckpt \
+             --bert_config_file=$BERT_MODEL_DIR/bert_config.json \
+             --init_checkpoint=$BERT_MODEL_DIR/bert_model.ckpt \
              --max_seq_length=128 \
              --train_batch_size=32   \
              --learning_rate=3e-5   \
@@ -50,8 +50,8 @@ part two: experiments
                  --do_predict=True  \
                 --data_dir=$DATA_DIR  \
                 --vocab_file=$BERT_MODEL_DIR/vocab.txt \
-                --bert_config_file==$BERT_MODEL_DIR/bert_config.json \
-                --init_checkpoint==$BERT_MODEL_DIR/bert_model.ckpt \
+                --bert_config_file=$BERT_MODEL_DIR/bert_config.json \
+                --init_checkpoint=$BERT_MODEL_DIR/bert_model.ckpt \
                 --max_seq_length=128 \
                 --train_batch_size=32   \
                 --learning_rate=3e-5   \
