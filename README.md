@@ -29,14 +29,14 @@ part two: experiments
               --do_eval=True  \
               --do_predict=True  \
              --data_dir=SRLdata  \
-             --vocab_file=checkpoint/vocab.txt \
+             --vocab_file=$BERT_MODEL_DIR/vocab.txt \
              --bert_config_file==$BERT_MODEL_DIR/bert_config.json \
              --init_checkpoint==$BERT_MODEL_DIR/bert_model.ckpt \
              --max_seq_length=128 \
              --train_batch_size=32   \
              --learning_rate=3e-5   \
              --num_train_epochs=3.0  \
-             --output_dir=output/result_dir/ 
+             --output_dir=$TRAINED_CLASSIFIER/ 
              
   If you want to add lstm layer:
   
@@ -47,7 +47,7 @@ part two: experiments
                 --do_eval=True  \
                 --do_predict=True  \
                --data_dir=SRLdata  \
-               --vocab_file=checkpoint/vocab.txt \
+               --vocab_file=$BERT_MODEL_DIR/vocab.txt \
                --bert_config_file==$BERT_MODEL_DIR/bert_config.json \
                --init_checkpoint==$BERT_MODEL_DIR/bert_model.ckpt \
                --max_seq_length=128 \
@@ -55,7 +55,7 @@ part two: experiments
                --learning_rate=3e-5   \
                --num_train_epochs=3.0  \
                --add_lstm=True  \
-               --output_dir=output/result_dir/ 
+               --output_dir=$TRAINED_CLASSIFIER/ 
    To get the right f1 score, you need to run another file:
    
            python evaluate_unit.py --output_dir /the/predicted/dir --data_dir /the/test/file/dir --vocab_file /vocab/dir
