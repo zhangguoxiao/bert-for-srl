@@ -60,7 +60,7 @@ part two: experiments
                   --output_dir=$TRAINED_CLASSIFIER/ 
    To get the right f1 score, you need to run another file:
    
-           python evaluate_unit.py --output_dir /the/predicted/dir --data_dir /the/test/file/dir --vocab_file /vocab/dir
+           python evaluate_unit.py --output_dir /the/predicted/dir --data_dir /the/test/file/dir --vocab_loc /vocab/dir
    
    The full results are as follows, you can find the special name "all", "all  presition: 0.84863  recall: 0.85397   fvalue: 0.85129"
    
