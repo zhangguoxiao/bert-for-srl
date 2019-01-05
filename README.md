@@ -3,7 +3,7 @@
 this project is for Semantic role labeling using bert.
 
 
-part one: Introduction
+# part one: Introduction
 
    For SRL, Since Zhou and Xu (2015), end-to-end system with deep dynamic neural network have been chosen (He et al., 2017; Tan et al., 2017, Peters  et al., 2018).To be specific, Zhou and Xu (2015) introduce two other features (predicate context and region mark) except for the input sequence, while He et al. (2017) and Tan et al.(2017) use a sentence-predicate pair  as the special input. Besides, Tan et al.(2017) choose self-attention as the key component in their architecture instead of LSTMs. Anyway, these end-to-end systems perform better than the traditional models (Pradhan et al., 2013; Täkström et al., 2015).
     Not long ago, the word representation is pre-trained through models including word2vec and glove. With the development of accelerated computing power, more complexed model dealing with complicated contextualized structure has been proposed (elmo,Peters  et al., 2018).  when using ELMo, the f1 score has jumped from 81.4% to 84.6% on the OntoNotes benchmark (Pradhan et al., 2013). 
@@ -11,7 +11,7 @@ part one: Introduction
     The relative positional information for each word can be learned automatically with transformer model. Thus, it is sufficient to annotate the target in the word sequence. Here, in this study, we choose two position indicators to annotate the target predicate. A sequence with n predicates is processed n times. Each time, the target predicate is annotated with two position indicators. 
  
 
-part two: experiments
+# part two: experiments
 
   All the following experiments are based on the English OntoNotes dataset (Pradhan et al., 2013). 
   Tensorflow 1.12 and cuda 9.0 are used on GTX 1080 Ti. The pretrained model of our experiments are bert-based model "cased_L-12_H-768_A-12" with 12-layer, 768-hidden, 12-heads , 110M parameters. The large model doesn't work on  GTX 1080 Ti.
@@ -136,7 +136,7 @@ part two: experiments
    Using the default setting,  The init learning rates are different for parameters with namescope "bert" and parameters with namescope "lstm-crf". You can change it through setting lr_2 = lr_gen(0.001) in line 73 of optimization.py.
    
    
-part three: results
+# part three: results
     
    For the experiments, when adding lstm , no better results has come out. For the different tagging strategy, no significant difference has been observed. The split learning strategy is useful.
 
@@ -157,7 +157,7 @@ part three: results
              all  presition: 0.85895  recall: 0.86071   fvalue: 0.85983
   
   
- references:
+ # references:
  
     https://github.com/google-research/bert
     https://github.com/macanv/BERT-BiLSTM-CRF-NER
