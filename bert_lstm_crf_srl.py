@@ -3,7 +3,7 @@
 """
 Copyright 2018 The Google AI Language Team Authors.
 BASED ON Google_BERT.
-@Author:zhoukaiyin
+@Author:zhanggguoxiao
 """
 from __future__ import absolute_import
 from __future__ import division
